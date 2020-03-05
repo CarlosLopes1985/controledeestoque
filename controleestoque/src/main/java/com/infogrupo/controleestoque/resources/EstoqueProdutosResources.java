@@ -33,7 +33,7 @@ public class EstoqueProdutosResources {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody EstoqueProdutoDTO objDto){
+	public ResponseEntity<Void> insert(@Valid @RequestBody EstoqueProdutoDTO objDto) throws Exception{
 		
 		EstoqueProdutos obj = estoqueProdutoService.fromDto(objDto);
 		

@@ -13,6 +13,7 @@ import com.infogrupo.controleestoque.entity.EstoqueProdutos;
 import com.infogrupo.controleestoque.entity.Funcionario;
 import com.infogrupo.controleestoque.entity.Produto;
 import com.infogrupo.controleestoque.repository.EstoqueProdutoRepository;
+import com.infogrupo.controleestoque.validation.ValidaEstoqueProduto;
 
 @Service
 public class EstoqueProdutoService {
@@ -38,8 +39,13 @@ public class EstoqueProdutoService {
 		return es;
 	}
 
-	public EstoqueProdutos insert(EstoqueProdutos obj) {
+	public EstoqueProdutos insert(EstoqueProdutos obj) throws Exception {
 		
+		ValidaEstoqueProduto vep = new ValidaEstoqueProduto();
+		
+		if( vep.validaRetiradaEntrada(obj) == false) {
+			throw new Exception("FALHOU");
+		}
 		
 		return estoqueProdutoRepository.save(obj);
 	}
